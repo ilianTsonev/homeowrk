@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Club - Resources</title>
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; background-color: #121214; color: #00ffcc; margin: 0; padding: 0; }
+        header { background-color: #1a1a24; padding: 20px; text-align: center; border-bottom: 3px solid #ff007f; }
+        h1 { margin: 0; color: #ff007f; }
+        nav { margin-top: 15px; }
+        nav a { color: #00ffcc; margin: 0 15px; text-decoration: none; font-weight: bold; border: 1px solid #00ffcc; padding: 5px 10px; }
+        nav a:hover { background-color: #00ffcc; color: #121214; }
+        nav a.active { background-color: #ff007f; color: white; border-color: #ff007f; }
+        .container { padding: 30px; max-width: 800px; margin: auto; }
+        ul { list-style-type: square; padding-left: 20px; }
+        li { margin: 15px 0; font-size: 1.1em; }
+        a.res-link { color: #ffff00; text-decoration: underline; }
+        .alert-box { margin-top: 30px; padding: 15px; background: #331122; border: 1px solid #ff007f; display: none; }
+        .action-btn { background: #ff007f; color: white; border: none; padding: 10px; cursor: pointer; font-family: inherit; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>[ THE COMPUTER CLUB ]</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html" class="active">Resources</a>
+            <a href="members.html">Members</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Learning & Loot</h2>
+        <p>Use these safe links to level up your technical knowledge:</p>
+        
+        <ul>
+            <li><a class="res-link" href="https://www.freecodecamp.org" target="_blank">FreeCodeCamp</a> - Learn web development step by step.</li>
+            <li><a class="res-link" href="https://linuxjourney.com" target="_blank">Linux Journey</a> - Great environment to learn operating system basics.</li>
+            <li><a class="res-link" href="https://github.com" target="_blank">GitHub</a> - Host your code and track your club projects here.</li>
+        </ul>
+
+        <hr style="border-color: #ff007f; margin-top: 40px;">
+        <h3>Club Secret Archives</h3>
+        <button class="action-btn" id="reveal-btn">Access Restricted Resource</button>
+        <div class="alert-box" id="secret-box">
+            <strong>[CLASSIFIED]</strong> Try checking out <a class="res-link" href="https://overthewire.org/wargames/" target="_blank">OverTheWire</a> to play security and hacking wargames. Perfect practice for security competitions!
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Computer Club | Built with pure HTML/CSS/JS.
+    </footer>
+
+    <script>
+        document.getElementById('reveal-btn').addEventListener('click', function() {
+            const secretBox = document.getElementById('secret-box');
+            if (secretBox.style.display === 'block') {
+                secretBox.style.display = 'none';
+                this.textContent = "Access Restricted Resource";
+            } else {
+                secretBox.style.display = 'block';
+                this.textContent = "Hide Restricted Resource";
+            }
+        });
+    </script>
+</body>
+</html>

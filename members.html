@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Club - Members</title>
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; background-color: #121214; color: #00ffcc; margin: 0; padding: 0; }
+        header { background-color: #1a1a24; padding: 20px; text-align: center; border-bottom: 3px solid #ff007f; }
+        h1 { margin: 0; color: #ff007f; }
+        nav { margin-top: 15px; }
+        nav a { color: #00ffcc; margin: 0 15px; text-decoration: none; font-weight: bold; border: 1px solid #00ffcc; padding: 5px 10px; }
+        nav a:hover { background-color: #00ffcc; color: #121214; }
+        nav a.active { background-color: #ff007f; color: white; border-color: #ff007f; }
+        .container { padding: 30px; max-width: 800px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #1a1a24; }
+        th, td { border: 1px solid #00ffcc; padding: 12px; text-align: left; }
+        th { background-color: #ff007f; color: white; }
+        tr:hover { background-color: #252535; }
+        .generator-section { margin-top: 30px; padding: 15px; background: #0a0a0c; border: 1px dashed #ffff00; text-align: center; }
+        #quote-display { font-style: italic; color: #ffff00; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>[ THE COMPUTER CLUB ]</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="members.html" class="active">Members</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Core Terminal Crew</h2>
+        <p>Meet the masterminds running the infrastructure behind the scenes:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Handle / Name</th>
+                    <th>Role</th>
+                    <th>Favorite Language</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alice / "Root"</td>
+                    <td>President</td>
+                    <td>Rust</td>
+                </tr>
+                <tr>
+                    <td>Bob / "Sudo"</td>
+                    <td>Vice President</td>
+                    <td>Python</td>
+                </tr>
+                <tr>
+                    <td>Charlie / "Null"</td>
+                    <td>Tech Lead</td>
+                    <td>C++</td>
+                </tr>
+                <tr>
+                    <td>Dave / "Ping"</td>
+                    <td>Event Coordinator</td>
+                    <td>JavaScript</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="generator-section">
+            <button id="quote-btn" style="background:#ffff00; color:#121214; border:none; padding:8px 15px; font-weight:bold; cursor:pointer;">Ping Core Crew Wisdom</button>
+            <p id="quote-display">"Click the button to fetch a log statement."</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Computer Club | Built with pure HTML/CSS/JS.
+    </footer>
+
+    <script>
+        const quotes = [
+            "Alice: 'If it builds without warnings, it’s a miracle.'",
+            "Bob: 'There are 10 types of people... those who get binary and those who don’t.'",
+            "Charlie: 'Have you tried turning it off and on again?'",
+            "Dave: 'A bad day coding is still better than a good day debugging someone else’s PHP.'"
+        ];
+
+        document.getElementById('quote-btn').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote-display').textContent = quotes[randomIndex];
+        });
+    </script>
+</body>
+</html>

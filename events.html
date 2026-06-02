@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Club - Events</title>
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; background-color: #121214; color: #00ffcc; margin: 0; padding: 0; }
+        header { background-color: #1a1a24; padding: 20px; text-align: center; border-bottom: 3px solid #ff007f; }
+        h1 { margin: 0; color: #ff007f; }
+        nav { margin-top: 15px; }
+        nav a { color: #00ffcc; margin: 0 15px; text-decoration: none; font-weight: bold; border: 1px solid #00ffcc; padding: 5px 10px; }
+        nav a:hover { background-color: #00ffcc; color: #121214; }
+        nav a.active { background-color: #ff007f; color: white; border-color: #ff007f; }
+        .container { padding: 30px; max-width: 800px; margin: auto; }
+        .filter-btn { background: #1a1a24; color: #ffff00; border: 1px solid #ffff00; padding: 5px 15px; cursor: pointer; margin-bottom: 20px; }
+        .filter-btn:hover { background: #ffff00; color: #121214; }
+        .event-card { background-color: #1a1a24; border-left: 5px solid #ff007f; padding: 15px; margin-bottom: 15px; }
+        .workshop { border-left-color: #00ffcc; }
+        footer { text-align: center; padding: 15px; background-color: #0a0a0c; font-size: 0.8em; color: #555; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>[ THE COMPUTER CLUB ]</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html" class="active">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="members.html">Members</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Upcoming Operations</h2>
+        <button class="filter-btn" id="filter-toggle">Show Only Workshops</button>
+
+        <div class="event-card workshop" id="ev1">
+            <h3>1. Introduction to Linux Commands</h3>
+            <p><strong>Date:</strong> October 12th, 5:00 PM</p>
+            <p>Stop being scared of the terminal. Learn how to navigate your system using only your keyboard.</p>
+        </div>
+
+        <div class="event-card social" id="ev2">
+            <h3>2. Retro Gaming LAN Night</h3>
+            <p><strong>Date:</strong> October 26th, 6:00 PM</p>
+            <p>We are hooking up old local network switches and playing classic multiplayer games from the 2000s.</p>
+        </div>
+
+        <div class="event-card workshop" id="ev3">
+            <h3>3. Build Your Own API</h3>
+            <p><strong>Date:</strong> November 9th, 4:30 PM</p>
+            <p>A hands-on coding session creating backend routes. Bring a laptop with Node.js installed.</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Computer Club | Built with pure HTML/CSS/JS.
+    </footer>
+
+    <script>
+        const filterBtn = document.getElementById('filter-toggle');
+        let showingOnlyWorkshops = false;
+
+        filterBtn.addEventListener('click', () => {
+            showingOnlyWorkshops = !showingOnlyWorkshops;
+            const socials = document.querySelectorAll('.social');
+            
+            if (showingOnlyWorkshops) {
+                socials.forEach(el => el.style.display = 'none');
+                filterBtn.textContent = "Show All Events";
+            } else {
+                socials.forEach(el => el.style.display = 'block');
+                filterBtn.textContent = "Show Only Workshops";
+            }
+        });
+    </script>
+</body>
+</html>
