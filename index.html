@@ -20,6 +20,53 @@
         iframe[src*="soundcloud.com"] {
             filter: invert(1) hue-rotate(180deg);
         }
+        .custom-sc-player {
+  display: flex;
+  align-items: center;
+  background: #111111; /* Match your exact site background */
+  border: 1px solid #222222;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  max-width: 400px;
+}
+
+.play-btn {
+  background: linear-gradient(#ff5500, #ff2200); /* Classic SC Orange gradient */
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.play-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-info .artist {
+  color: #888888;
+  font-size: 12px;
+}
+
+.track-info .title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 2px;
+}
     </style>
 </head>
 <body>
@@ -42,14 +89,59 @@
             <p>We meet every Thursday to talk code, break things, and occasionally eat free pizza.</p>
             <hr style="border-color: #ff007f;">
             <p>System Status: <span id="time-greeting" class="status-tag">Loading terminal...</span></p>
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A377577644&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/sidneygish" title="Sidney Gish" target="_blank" style="color: #cccccc; text-decoration: none;">Sidney Gish</a> · <a href="https://soundcloud.com/sidneygish/impostor-syndrome" title="Impostor Syndrome" target="_blank" style="color: #cccccc; text-decoration: none;">Impostor Syndrome</a></div>
-        </div>
+            <!-- Your Custom Dark Mode Player UI -->
+    <div class="custom-sc-player">
+    <button id="custom-play-btn" class="play-btn">
+        <!-- Play Icon SVG -->
+        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <!-- Pause Icon SVG (Hidden by default) -->
+        <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    
+    <div class="track-info">
+        <span class="artist">Sidney Gish</span>
+        <span class="title">Impostor Syndrome</span>
+    </div>
+    </div>
+
+    <!-- The Hidden SoundCloud Engine -->
+    <iframe id="sc-iframe" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/377577644" 
+            style="display: none;"></iframe>
+
+    <!-- Load the Official SoundCloud API Script -->
+    <script src="https://w.soundcloud.com/player/api.js"></script></div>
     </div>
 
     <footer>
         &copy; 2026 Computer Club | Built with pure HTML/CSS/JS.
     </footer>
 
+    <script> //soundcloud logic
+    const iframe = document.getElementById('sc-iframe');
+const widget = SC.Widget(iframe);
+
+const playBtn = document.getElementById('custom-play-btn');
+const playIcon = document.getElementById('play-icon');
+const pauseIcon = document.getElementById('pause-icon');
+
+// Toggle play/pause when your custom button is clicked
+playBtn.addEventListener('click', () => {
+  widget.toggle();
+});
+
+// Listen to SoundCloud events to update your custom UI icons
+widget.bind(SC.Widget.Events.PLAY, () => {
+  playIcon.style.display = 'none';
+  pauseIcon.style.display = 'block';
+});
+
+widget.bind(SC.Widget.Events.PAUSE, () => {
+  playIcon.style.display = 'block';
+  pauseIcon.style.display = 'none';
+});
+
+    </script>
     <script>
         // Dynamic greeting based on time
         const greetingSpan = document.getElementById('time-greeting');
