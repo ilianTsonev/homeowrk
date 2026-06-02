@@ -33,3 +33,8 @@ After pushing, the Actions workflow will run and publish the site. Your Pages UR
 Notes:
 - The workflow deploys the repository root. If you later add build steps (e.g., a static site generator), update the workflow to publish the build output directory.
 - If you want the repository named differently, replace `homeowrk` with your preferred repo name in the commands above.
+
+Workflow note:
+- This workflow now deploys by committing the site files to a `gh-pages` branch (via `peaceiris/actions-gh-pages`). After the workflow runs, verify your repository's Pages settings at https://github.com/USERNAME/homeowrk/settings/pages and ensure the source is set to the `gh-pages` branch (or choose the automatic option GitHub suggests).
+
+If you'd like, I can instead revert to an artifact-based Pages workflow and attempt to update any deprecated action versions, but the `gh-pages` push method avoids the deprecated `upload-artifact` action and works without additional fixes.
