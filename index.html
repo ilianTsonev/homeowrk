@@ -16,57 +16,54 @@
         .welcome-box { background-color: #1a1a24; border: 2px dashed #00ffcc; padding: 20px; border-radius: 5px; }
         .status-tag { color: #ffff00; font-weight: bold; }
         footer { text-align: center; padding: 15px; background-color: #0a0a0c; font-size: 0.8em; color: #555; margin-top: 40px; }
-        /* Target all SoundCloud embeds on your site */
-        iframe[src*="soundcloud.com"] {
-            filter: invert(1) hue-rotate(180deg);
-        }
         .custom-sc-player {
-  display: flex;
-  align-items: center;
-  background: #111111; /* Match your exact site background */
-  border: 1px solid #222222;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-family: sans-serif;
-  max-width: 400px;
-}
+            display: flex;
+            align-items: center;
+            background: #1a1a24; /* Matches your welcome-box background */
+            border: 2px solid #00ffcc; /* Cyan border to match the nav buttons */
+            padding: 12px 20px;
+            border-radius: 0px; /* Sharp corners for that retro terminal look */
+            font-family: 'Courier New', Courier, monospace; /* Monospace matching */
+            max-width: 400px;
+            margin-top: 20px;
+        }
 
-.play-btn {
-  background: linear-gradient(#ff5500, #ff2200); /* Classic SC Orange gradient */
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-right: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
+        .play-btn {
+            background: #ff007f; /* Neon pink button */
+            border: none;
+            border-radius: 0px; /* Sharp corners */
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-right: 15px;
+            box-shadow: 3px 3px 0px #00ffcc; /* Cyberpunk retro drop-shadow */
+        }
 
-.play-btn svg {
-  width: 20px;
-  height: 20px;
-  fill: #ffffff;
-}
+        .play-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #121214; /* Dark icon inside the bright pink button */
+        }
 
-.track-info {
-  display: flex;
-  flex-direction: column;
-}
+        .track-info {
+            display: flex;
+            flex-direction: column;
+        }
 
-.track-info .artist {
-  color: #888888;
-  font-size: 12px;
-}
+        .track-info .artist {
+            color: #ffff00; /* Yellow status color for the artist text */
+            font-size: 0.9em;
+        }
 
-.track-info .title {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 2px;
-}
+        .track-info .title {
+            color: #00ffcc; /* Cyan for the track title */
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
