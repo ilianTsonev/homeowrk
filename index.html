@@ -8,30 +8,74 @@
         body { font-family: 'Courier New', Courier, monospace; background-color: #121214; color: #00ffcc; margin: 0; padding: 0; }
         header { background-color: #1a1a24; padding: 20px; text-align: center; border-bottom: 3px solid #ff007f; }
         h1 { margin: 0; color: #ff007f; }
-        nav { margin-top: 15px; }
-        nav a { color: #00ffcc; margin: 0 15px; text-decoration: none; font-weight: bold; border: 1px solid #00ffcc; padding: 5px 10px; }
+        
+        /* --- RESPONSIVE FLEXBOX NAVIGATION --- */
+        nav { 
+            margin-top: 15px; 
+            display: flex;
+            flex-wrap: wrap;       /* Allows links to wrap to a new line on small screens instead of overlapping */
+            justify-content: center;
+            gap: 10px;             /* Modern way to handle spacing without broken margins */
+        }
+        nav a { 
+            color: #00ffcc; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border: 1px solid #00ffcc; 
+            padding: 5px 10px; 
+            white-space: nowrap;   /* Prevents the text inside a button from splitting into two rows */
+        }
         nav a:hover { background-color: #00ffcc; color: #121214; }
         nav a.active { background-color: #ff007f; color: white; border-color: #ff007f; }
-        .container { padding: 30px; max-width: 800px; margin: auto; }
+        
+        /* --- GRID CONTAINER FOR DESKTOP & MOBILE --- */
+        .container { 
+            padding: 20px; 
+            max-width: 1100px;     /* Expanded max-width for better desktop presence */
+            margin: auto; 
+            box-sizing: border-box;
+        }
+
+        /* The Dashboard Layout */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to 1 column for mobile */
+            gap: 20px;
+        }
+        
         .welcome-box { background-color: #1a1a24; border: 2px dashed #00ffcc; padding: 20px; border-radius: 5px; }
+        
+        /* Sidebar container for extra desktop content */
+        .sidebar-box { 
+            background-color: #1a1a24; 
+            border: 2px solid #ff007f; 
+            padding: 20px; 
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
         .status-tag { color: #ffff00; font-weight: bold; }
         footer { text-align: center; padding: 15px; background-color: #0a0a0c; font-size: 0.8em; color: #555; margin-top: 40px; }
+        
+        /* Music Player Sizing */
         .custom-sc-player {
             display: flex;
             align-items: center;
-            background: #1a1a24; /* Matches your welcome-box background */
-            border: 2px solid #00ffcc; /* Cyan border to match the nav buttons */
+            background: #121214; 
+            border: 2px solid #00ffcc; 
             padding: 12px 20px;
-            border-radius: 0px; /* Sharp corners for that retro terminal look */
-            font-family: 'Courier New', Courier, monospace; /* Monospace matching */
-            max-width: 400px;
+            border-radius: 0px; 
+            font-family: 'Courier New', Courier, monospace; 
             margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
-
         .play-btn {
-            background: #ff007f; /* Neon pink button */
+            background: #ff007f; 
             border: none;
-            border-radius: 0px; /* Sharp corners */
+            border-radius: 0px; 
             width: 40px;
             height: 40px;
             display: flex;
@@ -39,30 +83,25 @@
             justify-content: center;
             cursor: pointer;
             margin-right: 15px;
-            box-shadow: 3px 3px 0px #00ffcc; /* Cyberpunk retro drop-shadow */
+            box-shadow: 3px 3px 0px #00ffcc; 
+            flex-shrink: 0;       /* Stops the button from squishing on tiny phones */
         }
+        .play-btn svg { width: 20px; height: 20px; fill: #121214; }
+        .track-info { display: flex; flex-direction: column; }
+        .track-info .artist { color: #ffff00; font-size: 0.9em; }
+        .track-info .title { color: #00ffcc; font-size: 1.1em; font-weight: bold; margin-top: 2px; }
 
-        .play-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: #121214; /* Dark icon inside the bright pink button */
-        }
-
-        .track-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .track-info .artist {
-            color: #ffff00; /* Yellow status color for the artist text */
-            font-size: 0.9em;
-        }
-
-        .track-info .title {
-            color: #00ffcc; /* Cyan for the track title */
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-top: 2px;
+        /* --- MEDIA QUERY FOR TABLETS & DESKTOPS --- */
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px;
+            }
+            .dashboard {
+                grid-template-columns: 2fr 1fr; /* Welcome box gets 2/3 space, sidebar gets 1/3 */
+            }
+            .custom-sc-player {
+                margin-top: 0; /* Align nicely inside the sidebar */
+            }
         }
     </style>
 </head>
@@ -80,71 +119,71 @@
     </header>
 
     <div class="container">
-        <div class="welcome-box">
-            <h2>Welcome, World!</h2>
-            <p>This is the official hub for the campus Computer Club. Whether you are a master programmer, a Linux tinkerer, or someone who just likes building broken PCs, you belong here.</p>
-            <p>We meet every Thursday to talk code, break things, and occasionally eat free pizza.</p>
-            <hr style="border-color: #ff007f;">
-            <p>System Status: <span id="time-greeting" class="status-tag">Loading terminal...</span></p>
-            <!-- Your Custom Dark Mode Player UI -->
-    <div class="custom-sc-player">
-    <button id="custom-play-btn" class="play-btn">
-        <!-- Play Icon SVG -->
-        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        <!-- Pause Icon SVG (Hidden by default) -->
-        <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-    </button>
-    
-    <div class="track-info">
-        <span class="artist">Sidney Gish</span>
-        <span class="title">Impostor Syndrome</span>
-    </div>
+        <div class="dashboard">
+            
+            <div class="welcome-box">
+                <h2>Welcome, World!</h2>
+                <p>This is the official hub for the campus Computer Club. Whether you are a master programmer, a Linux tinkerer, or someone who just likes building broken PCs, you belong here.</p>
+                <p>We meet every Thursday to talk code, break things, and occasionally eat free pizza.</p>
+            </div>
+
+            <div class="sidebar-box">
+                <div>
+                    <h3 style="margin-top: 0; color: #ff007f;">[ TERMINAL ]</h3>
+                    <p>System Status: <br><span id="time-greeting" class="status-tag">Loading terminal...</span></p>
+                </div>
+                
+                <div class="custom-sc-player">
+                    <button id="custom-play-btn" class="play-btn">
+                        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <div class="track-info">
+                        <span class="artist">Sidney Gish</span>
+                        <span class="title">Impostor Syndrome</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- The Hidden SoundCloud Engine -->
     <iframe id="sc-iframe" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
             src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/377577644" 
             style="display: none;"></iframe>
 
-    <!-- Load the Official SoundCloud API Script -->
-    <script src="https://w.soundcloud.com/player/api.js"></script></div>
-    </div>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
 
-    <footer>
+    <footer Saunders>
         &copy; 2026 Computer Club | Built with pure HTML/CSS/JS.
     </footer>
 
-    <script> //soundcloud logic
-    const iframe = document.getElementById('sc-iframe');
-const widget = SC.Widget(iframe);
-
-const playBtn = document.getElementById('custom-play-btn');
-const playIcon = document.getElementById('play-icon');
-const pauseIcon = document.getElementById('pause-icon');
-
-// Toggle play/pause when your custom button is clicked
-playBtn.addEventListener('click', () => {
-  widget.toggle();
-});
-
-// Listen to SoundCloud events to update your custom UI icons
-widget.bind(SC.Widget.Events.PLAY, () => {
-  playIcon.style.display = 'none';
-  pauseIcon.style.display = 'block';
-});
-
-widget.bind(SC.Widget.Events.PAUSE, () => {
-  playIcon.style.display = 'block';
-  pauseIcon.style.display = 'none';
-});
-
-    </script>
     <script>
+        // SoundCloud Logic
+        const iframe = document.getElementById('sc-iframe');
+        const widget = SC.Widget(iframe);
+
+        const playBtn = document.getElementById('custom-play-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+
+        playBtn.addEventListener('click', () => { widget.toggle(); });
+
+        widget.bind(SC.Widget.Events.PLAY, () => {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        });
+
+        widget.bind(SC.Widget.Events.PAUSE, () => {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        });
+
         // Dynamic greeting based on time
         const greetingSpan = document.getElementById('time-greeting');
         const hour = new Date().getHours();
         if (hour < 12) {
-            greetingSpan.textContent = "Good morning, Hacker. Systems are nominal.";
+            greetingSpan.textContent = "Good morning, Hacker. Systems nominal.";
         } else if (hour < 18) {
             greetingSpan.textContent = "Good afternoon, Hacker. Compile loop active.";
         } else {
