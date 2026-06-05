@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Computer Club - Home</title>
@@ -108,7 +108,7 @@
 <body>
 
     <header>
-        <h1>[ THE COMPUTER CLUB ]</h1>
+        <h1>[ CAMPUS COMPUTER CLUB ]</h1>
         <nav>
             <a href="index.html" class="active">Home</a>
             <a href="events.html">Events</a>
@@ -122,15 +122,16 @@
         <div class="dashboard">
             
             <div class="welcome-box">
-                <h2>Welcome, World!</h2>
-                <p>This is the official hub for the campus Computer Club. Whether you are a master programmer, a Linux tinkerer, or someone who just likes building broken PCs, you belong here.</p>
-                <p>We meet every Thursday to talk code, break things, and occasionally eat free pizza.</p>
+                <h2>Welcome to the Digital Hub</h2>
+                <p>Welcome to the official online homepage of our student-led Computer Club. Our mission is to foster an inclusive, collaborative community for individuals who share a passion for computing, technology, and software development. Whether you are an experienced programmer looking to collaborate on complex projects, or a complete beginner eager to understand the fundamentals of technology, you will find a welcoming space here.</p>
+                <p>We host weekly general body meetings to explore emerging tech trends, organize hands-on technical workshops, and collaborate on group projects. Beyond our technical goals, we strive to build professional networking opportunities, helping students bridge the gap between academic theory and practical industry applications.</p>
+                <p>Meetings are held every Thursday. We look forward to innovating, learning, and building the future together.</p>
             </div>
 
             <div class="sidebar-box">
                 <div>
-                    <h3 style="margin-top: 0; color: #ff007f;">[ TERMINAL ]</h3>
-                    <p>System Status: <br><span id="time-greeting" class="status-tag">Loading terminal...</span></p>
+                    <h3 style="margin-top: 0; color: #ff007f;">[ NOTIFICATIONS ]</h3>
+                    <p>Current Updates: <br><span id="time-greeting" class="status-tag">Connecting to club feed...</span></p>
                 </div>
                 
                 <div class="custom-sc-player">
@@ -154,8 +155,8 @@
 
     <script src="https://w.soundcloud.com/player/api.js"></script>
 
-    <footer Saunders>
-        &copy; 2026 Computer Club | Built with pure HTML/CSS/JS.
+    <footer>
+        &copy; 2026 Computer Club | Maintained by the Student IT Department.
     </footer>
 
     <script>
@@ -183,11 +184,11 @@
         const greetingSpan = document.getElementById('time-greeting');
         const hour = new Date().getHours();
         if (hour < 12) {
-            greetingSpan.textContent = "Good morning, Hacker. Systems nominal.";
+            greetingSpan.textContent = "Good morning! Wishing you a productive day ahead.";
         } else if (hour < 18) {
-            greetingSpan.textContent = "Good afternoon, Hacker. Compile loop active.";
+            greetingSpan.textContent = "Good afternoon! Join us for our next weekly workshop.";
         } else {
-            greetingSpan.textContent = "Good evening, Hacker. Running night-mode scripts.";
+            greetingSpan.textContent = "Good evening! Stay tuned for upcoming project releases.";
         }
     </script>
 </body>
